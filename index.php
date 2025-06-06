@@ -11,11 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!preg_match('/^[а-яёА-ЯЁ\s]+$/', $fio)) {
         echo 'Используйье только кириллицу';
     }
-    if (strlen($login) < 6) {
-        echo 'Логин должен содержать больше 6 символов';
-    }
+    if (!preg_match('/^[а-яёА-ЯЁ]{6,}$/u', $login)) {
+    echo 'Логин должен содержать минимум 6 символов кириллицы';
+}
     if (strlen($password) < 6) {
         echo 'Пароль должен содержать больше 6 символов';
+    }
+    if (!preg_match('/^\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}$/', $phone)) {
+        echo 'Телефон должен быть в формате +7(XXX)-XXX-XX-XX';
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo 'Введите верный формат email';
