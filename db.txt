@@ -1,0 +1,36 @@
+=====================
+СТРУКТУРА БАЗЫ ДАННЫХ
+=====================
+
+1. ТАБЛИЦА: users
+-----------------
+Поля:
+- id (int) - PRIMARY KEY, AUTO_INCREMENT
+- fio (varchar(255)) - ФИО пользователя
+- phone (varchar(20)) - Телефон
+- email (varchar(250)) - Email
+- login (varchar(100)) - Логин
+- password (varchar(250)) - Пароль (хранится в хешированном виде)
+
+2. ТАБЛИЦА: cards
+-----------------
+Поля:
+- id (int) - PRIMARY KEY, AUTO_INCREMENT
+- user_id (int) - FOREIGN KEY (связь с users.id)
+- author (varchar(250)) - Автор книги
+- name (varchar(250)) - Название книги
+- send (enum) - Тип: 
+  * 'Готов поделиться'
+  * 'Хочу в свою библиотеку'
+- izdatelstvo (varchar(250)) - Издательство
+- year (varchar(4)) - Год издания
+- pereplet (varchar(250)) - Тип переплета
+- sostoyanie (varchar(250)) - Состояние книги
+- comment (varchar(250)) - Комментарий модератора
+- status (enum) - Статус карточки:
+  * 'Опубликовано'
+  * 'Отклонена'
+  * 'На рассмотрении'
+
+СВЯЗИ:
+- cards.user_id → users.id (CASCADE)
